@@ -1,0 +1,12 @@
+# Secrets - never commit your API key
+.env
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Netlify / Node
+.netlify/
+node_modules/

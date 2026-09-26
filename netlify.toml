@@ -1,0 +1,18 @@
+# Netlify configuration for AI Debate Arena
+[build]
+  publish = "public"               # the static frontend
+  functions = "netlify/functions"  # one serverless function per API endpoint
+
+[build.environment]
+  NODE_VERSION = "20"              # built-in fetch() needs Node 18+
+
+[functions]
+  node_bundler = "esbuild"         # bundles netlify/lib/* into each function
+
+# /api/speech -> /.netlify/functions/speech (and so on), so the frontend
+# calls the same URLs as it does with the local Flask server.
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = true
